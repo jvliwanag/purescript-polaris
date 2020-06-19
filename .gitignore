@@ -9,4 +9,4 @@
 /.psa*
 /.spago
 
-/src/generated/
+# /src/generated/
