@@ -1,0 +1,22 @@
+{
+  "rawSubComponents": [
+    {
+      "rawProps": [
+        {
+          "default": false,
+          "description": "Fill the available horizontal space in the stack with the item",
+          "mandatory": false,
+          "type": "boolean",
+          "name": "fill"
+        },
+        {
+          "description": "Elements to display inside stack item",
+          "mandatory": false,
+          "type": "React.ReactNode",
+          "name": "children"
+        }
+      ],
+      "name": "Item"
+    }
+  ]
+}
