@@ -8,10 +8,11 @@ import Untagged.Castable (class Castable)
 import Untagged.Union (UndefinedOr, type (|+|))
 
 type TooltipBaseProps'
-  = ( activatorWrapper :: UndefinedOr String
+  = ( accessibilityLabel :: UndefinedOr String
+    , activatorWrapper :: UndefinedOr String
     , active :: UndefinedOr Boolean
-    , content :: String
-    , light :: UndefinedOr Boolean
+    , content :: JSX
+    , dismissOnMouseOut :: UndefinedOr Boolean
     , preferredPosition
       :: UndefinedOr
          (StringLit "above" |+| StringLit "below" |+| StringLit "mostSpace")

@@ -16,7 +16,8 @@ import Untagged.Castable (cast, class Castable)
 import Untagged.Union (UndefinedOr)
 
 type TabsBaseProps'
-  = ( fitted :: UndefinedOr Boolean
+  = ( disclosureText :: UndefinedOr String
+    , fitted :: UndefinedOr Boolean
     , selected :: Number
     , tabs :: Array TabDescriptor
     , onSelect :: UndefinedOr (EffectFn1 Number Unit)
@@ -33,7 +34,7 @@ foreign import tabsRC :: ReactComponent TabsProps
 
 type TabDescriptor
   = { accessibilityLabel :: UndefinedOr String
-    , content :: String
+    , content :: JSX
     , id :: String
     , panelID :: UndefinedOr String
     , url :: UndefinedOr String

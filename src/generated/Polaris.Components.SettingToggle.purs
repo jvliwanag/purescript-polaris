@@ -6,7 +6,7 @@ module Polaris.Components.SettingToggle
   , settingToggleRC
   , ComplexAction
   , complexAction
-  , FunctionComponent
+  , ReactSfc
   ) where
 
 import Prelude
@@ -42,12 +42,10 @@ type ComplexAction
     , destructive :: UndefinedOr Boolean
     , disabled :: UndefinedOr Boolean
     , external :: UndefinedOr Boolean
-    , icon :: UndefinedOr (String |+| FunctionComponent)
+    , icon :: UndefinedOr (ReactSfc |+| StringLit "placeholder" |+| String)
     , id :: UndefinedOr String
     , loading :: UndefinedOr Boolean
-    , target
-      :: UndefinedOr
-         (StringLit "ADMIN_PATH" |+| StringLit "REMOTE" |+| StringLit "APP")
+    , outline :: UndefinedOr Boolean
     , url :: UndefinedOr String
     , onAction :: UndefinedOr (Effect Unit)
     , onMouseEnter :: UndefinedOr (Effect Unit)
@@ -57,4 +55,4 @@ type ComplexAction
 complexAction :: forall r. Castable r ComplexAction => r -> ComplexAction
 complexAction = cast
 
-foreign import data FunctionComponent :: Type
+foreign import data ReactSfc :: Type

@@ -21,7 +21,7 @@ type DropZoneProps
     , error :: UndefinedOr Boolean
     , errorOverlayText :: UndefinedOr String
     , id :: UndefinedOr String
-    , label :: UndefinedOr String
+    , label :: UndefinedOr JSX
     , labelAction :: UndefinedOr Action
     , labelHidden :: UndefinedOr Boolean
     , openFileDialog :: UndefinedOr Boolean

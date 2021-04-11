@@ -9,9 +9,11 @@ import Untagged.Castable (class Castable)
 import Untagged.Union (UndefinedOr)
 
 type LinkBaseProps'
-  = ( external :: UndefinedOr Boolean
+  = ( accessibilityLabel :: UndefinedOr String
+    , external :: UndefinedOr Boolean
     , id :: UndefinedOr String
     , monochrome :: UndefinedOr Boolean
+    , removeUnderline :: UndefinedOr Boolean
     , url :: UndefinedOr String
     , onClick :: UndefinedOr (Effect Unit)
     )

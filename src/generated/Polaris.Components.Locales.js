@@ -18,5 +18,6 @@ exports.pt_PT = require("@shopify/polaris/locales/pt-PT.json");
 exports.sv = require("@shopify/polaris/locales/sv.json");
 exports.th = require("@shopify/polaris/locales/th.json");
 exports.tr = require("@shopify/polaris/locales/tr.json");
+exports.vi = require("@shopify/polaris/locales/vi.json");
 exports.zh_CN = require("@shopify/polaris/locales/zh-CN.json");
 exports.zh_TW = require("@shopify/polaris/locales/zh-TW.json");

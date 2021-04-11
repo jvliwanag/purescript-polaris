@@ -14,7 +14,8 @@ import Untagged.Castable (class Castable)
 import Untagged.Union (UndefinedOr)
 
 type ScrollableBaseProps'
-  = ( hint :: UndefinedOr Boolean
+  = ( focusable :: UndefinedOr Boolean
+    , hint :: UndefinedOr Boolean
     , horizontal :: UndefinedOr Boolean
     , shadow :: UndefinedOr Boolean
     , vertical :: UndefinedOr Boolean

@@ -24,7 +24,7 @@ type SelectProps
          (String |+| JSX |+| Array (String |+| JSX) |+| Boolean)
     , helpText :: UndefinedOr JSX
     , id :: UndefinedOr String
-    , label :: String
+    , label :: JSX
     , labelAction :: UndefinedOr Action
     , labelHidden :: UndefinedOr Boolean
     , labelInline :: UndefinedOr Boolean
@@ -49,7 +49,11 @@ selectGroup :: forall r. Castable r SelectGroup => r -> SelectGroup
 selectGroup = cast
 
 type StrictOption
-  = { disabled :: UndefinedOr Boolean, label :: String, value :: String }
+  = { disabled :: UndefinedOr Boolean
+    , label :: String
+    , prefix :: UndefinedOr JSX
+    , value :: String
+    }
 
 strictOption :: forall r. Castable r StrictOption => r -> StrictOption
 strictOption = cast

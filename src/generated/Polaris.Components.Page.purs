@@ -4,6 +4,8 @@ module Polaris.Components.Page
   , PageProps
   , page
   , pageRC
+  , AccessibilityLabels
+  , accessibilityLabels
   , ActionListItemDescriptor
   , actionListItemDescriptor
   , Add
@@ -103,8 +105,8 @@ module Polaris.Components.Page
   , OpenBracket
   , PageDown
   , PageUp
-  , PaginationDescriptor
-  , paginationDescriptor
+  , PaginationProps
+  , paginationProps
   , Pause
   , Period
   , PrimaryAction
@@ -134,16 +136,14 @@ import Untagged.Union (UndefinedOr, type (|+|))
 
 type PageBaseProps'
   = ( actionGroups :: UndefinedOr (Array MenuGroupDescriptor)
+    , additionalMetadata :: UndefinedOr (JSX |+| String)
     , additionalNavigation :: UndefinedOr JSX
     , breadcrumbs :: UndefinedOr (Array (CallbackAction |+| LinkAction))
-    , forceRender :: UndefinedOr Boolean
     , fullWidth :: UndefinedOr Boolean
     , narrowWidth :: UndefinedOr Boolean
-    , pagination :: UndefinedOr PaginationDescriptor
-    , primaryAction :: UndefinedOr PrimaryAction
+    , pagination :: UndefinedOr PaginationProps
+    , primaryAction :: UndefinedOr (PrimaryAction |+| JSX)
     , secondaryActions :: UndefinedOr (Array MenuActionDescriptor)
-    , separator :: UndefinedOr Boolean
-    , singleColumn :: UndefinedOr Boolean
     , subtitle :: UndefinedOr String
     , thumbnail :: UndefinedOr (JSX |+| ReactSfc)
     , title :: UndefinedOr String
@@ -160,6 +160,17 @@ page = elemWithChildren pageRC
 
 foreign import pageRC :: ReactComponent PageProps
 
+type AccessibilityLabels = { next :: String, previous :: String }
+
+accessibilityLabels
+  :: forall r
+   . Castable
+  r
+  AccessibilityLabels
+  => r
+  -> AccessibilityLabels
+accessibilityLabels = cast
+
 type ActionListItemDescriptor
   = { accessibilityLabel :: UndefinedOr String
     , active :: UndefinedOr Boolean
@@ -174,13 +185,12 @@ type ActionListItemDescriptor
     , ellipsis :: UndefinedOr Boolean
     , external :: UndefinedOr Boolean
     , helpText :: UndefinedOr String
-    , icon :: UndefinedOr (String |+| FunctionComponent)
+    , icon :: UndefinedOr (ReactSfc |+| StringLit "placeholder" |+| String)
     , id :: UndefinedOr String
     , image :: UndefinedOr String
+    , prefix :: UndefinedOr JSX
     , role :: UndefinedOr String
-    , target
-      :: UndefinedOr
-         (StringLit "ADMIN_PATH" |+| StringLit "REMOTE" |+| StringLit "APP")
+    , suffix :: UndefinedOr JSX
     , url :: UndefinedOr String
     , onAction :: UndefinedOr (Effect Unit)
     , onMouseEnter :: UndefinedOr (Effect Unit)
@@ -459,9 +469,6 @@ type LinkAction
   = { accessibilityLabel :: UndefinedOr String
     , content :: UndefinedOr String
     , id :: UndefinedOr String
-    , target
-      :: UndefinedOr
-         (StringLit "ADMIN_PATH" |+| StringLit "REMOTE" |+| StringLit "APP")
     , url :: String
     }
 
@@ -474,13 +481,11 @@ type MenuActionDescriptor
     , destructive :: UndefinedOr Boolean
     , disabled :: UndefinedOr Boolean
     , external :: UndefinedOr Boolean
-    , icon :: UndefinedOr (String |+| FunctionComponent)
+    , icon :: UndefinedOr (ReactSfc |+| StringLit "placeholder" |+| String)
     , id :: UndefinedOr String
     , index :: UndefinedOr Number
     , loading :: UndefinedOr Boolean
-    , target
-      :: UndefinedOr
-         (StringLit "ADMIN_PATH" |+| StringLit "REMOTE" |+| StringLit "APP")
+    , outline :: UndefinedOr Boolean
     , url :: UndefinedOr String
     , onAction :: UndefinedOr (Effect Unit)
     , onMouseEnter :: UndefinedOr (Effect Unit)
@@ -549,11 +554,12 @@ foreign import data PageDown :: Type
 
 foreign import data PageUp :: Type
 
-type PaginationDescriptor
+type PaginationProps
   = { accessibilityLabel :: UndefinedOr String
+    , accessibilityLabels :: UndefinedOr AccessibilityLabels
     , hasNext :: UndefinedOr Boolean
     , hasPrevious :: UndefinedOr Boolean
-    , label :: UndefinedOr String
+    , label :: UndefinedOr JSX
     , nextKeys :: UndefinedOr (Array Key)
     , nextTooltip :: UndefinedOr String
     , nextURL :: UndefinedOr String
@@ -564,14 +570,8 @@ type PaginationDescriptor
     , onPrevious :: UndefinedOr (Effect Unit)
     }
 
-paginationDescriptor
-  :: forall r
-   . Castable
-  r
-  PaginationDescriptor
-  => r
-  -> PaginationDescriptor
-paginationDescriptor = cast
+paginationProps :: forall r. Castable r PaginationProps => r -> PaginationProps
+paginationProps = cast
 
 foreign import data Pause :: Type
 
@@ -583,13 +583,10 @@ type PrimaryAction
     , destructive :: UndefinedOr Boolean
     , disabled :: UndefinedOr Boolean
     , external :: UndefinedOr Boolean
-    , icon :: UndefinedOr (String |+| FunctionComponent)
+    , icon :: UndefinedOr (ReactSfc |+| StringLit "placeholder" |+| String)
     , id :: UndefinedOr String
     , loading :: UndefinedOr Boolean
     , primary :: UndefinedOr Boolean
-    , target
-      :: UndefinedOr
-         (StringLit "ADMIN_PATH" |+| StringLit "REMOTE" |+| StringLit "APP")
     , url :: UndefinedOr String
     , onAction :: UndefinedOr (Effect Unit)
     , onMouseEnter :: UndefinedOr (Effect Unit)

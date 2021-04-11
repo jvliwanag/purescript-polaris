@@ -24,6 +24,7 @@ type FiltersBaseProps'
     , filters :: Array FilterInterface
     , focused :: UndefinedOr Boolean
     , helpText :: UndefinedOr (String |+| JSX)
+    , hideQueryField :: UndefinedOr Boolean
     , hideTags :: UndefinedOr Boolean
     , queryPlaceholder :: UndefinedOr String
     , queryValue :: UndefinedOr String
@@ -58,6 +59,7 @@ appliedFilterInterface = cast
 type FilterInterface
   = { disabled :: UndefinedOr Boolean
     , filter :: JSX
+    , hideClearButton :: UndefinedOr Boolean
     , key :: String
     , label :: String
     , shortcut :: UndefinedOr Boolean

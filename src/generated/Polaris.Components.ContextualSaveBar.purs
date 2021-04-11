@@ -17,9 +17,11 @@ import Untagged.Union (UndefinedOr)
 
 type ContextualSaveBarProps
   = { alignContentFlush :: UndefinedOr Boolean
+    , contextControl :: UndefinedOr JSX
     , discardAction
       :: UndefinedOr
          ContextualSaveBarDiscardActionPropsContextualSaveBarAction
+    , fullWidth :: UndefinedOr Boolean
     , message :: UndefinedOr String
     , saveAction :: UndefinedOr ContextualSaveBarAction
     }

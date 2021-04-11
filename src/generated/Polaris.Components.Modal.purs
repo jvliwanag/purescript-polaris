@@ -4,11 +4,10 @@ module Polaris.Components.Modal
   , ModalProps
   , modal
   , modalRC
-  , AppBridgeAction
-  , appBridgeAction
   , ComplexAction
   , complexAction
-  , FunctionComponent
+  , ReactSfc
+  , RefObject
   , SyntheticEvent
   ) where
 
@@ -22,28 +21,20 @@ import Untagged.Castable (cast, class Castable)
 import Untagged.Union (UndefinedOr, type (|+|))
 
 type ModalBaseProps'
-  = ( footer :: UndefinedOr JSX
+  = ( activator :: UndefinedOr (RefObject |+| JSX)
+    , footer :: UndefinedOr JSX
     , iFrameName :: UndefinedOr String
     , instant :: UndefinedOr Boolean
     , large :: UndefinedOr Boolean
     , limitHeight :: UndefinedOr Boolean
     , loading :: UndefinedOr Boolean
-    , message :: UndefinedOr String
     , open :: Boolean
-    , primaryAction :: UndefinedOr (AppBridgeAction |+| ComplexAction)
-    , secondaryActions
-      :: UndefinedOr
-         (Array AppBridgeAction |+| Array ComplexAction)
+    , primaryAction :: UndefinedOr ComplexAction
+    , secondaryActions :: UndefinedOr (Array ComplexAction)
     , sectioned :: UndefinedOr Boolean
-    , size
-      :: UndefinedOr
-         ( StringLit "Small"
-           |+| StringLit "Medium"
-           |+| StringLit "Large"
-           |+| StringLit "Full"
-         )
     , src :: UndefinedOr String
-    , title :: UndefinedOr (String |+| JSX)
+    , title :: String |+| JSX
+    , titleHidden :: UndefinedOr Boolean
     , onClose :: Effect Unit
     , onIFrameLoad :: UndefinedOr (EffectFn1 SyntheticEvent Unit)
     , onScrolledToBottom :: UndefinedOr (Effect Unit)
@@ -59,37 +50,16 @@ modal = elemWithChildren modalRC
 
 foreign import modalRC :: ReactComponent ModalProps
 
-type AppBridgeAction
-  = { accessibilityLabel :: UndefinedOr String
-    , content :: UndefinedOr String
-    , destructive :: UndefinedOr Boolean
-    , disabled :: UndefinedOr Boolean
-    , external :: UndefinedOr Boolean
-    , id :: UndefinedOr String
-    , target
-      :: UndefinedOr
-         (StringLit "ADMIN_PATH" |+| StringLit "REMOTE" |+| StringLit "APP")
-    , url :: UndefinedOr String
-    , onAction :: UndefinedOr (Effect Unit)
-    , onMouseEnter :: UndefinedOr (Effect Unit)
-    , onTouchStart :: UndefinedOr (Effect Unit)
-    }
-
-appBridgeAction :: forall r. Castable r AppBridgeAction => r -> AppBridgeAction
-appBridgeAction = cast
-
 type ComplexAction
   = { accessibilityLabel :: UndefinedOr String
     , content :: UndefinedOr String
     , destructive :: UndefinedOr Boolean
     , disabled :: UndefinedOr Boolean
     , external :: UndefinedOr Boolean
-    , icon :: UndefinedOr (String |+| FunctionComponent)
+    , icon :: UndefinedOr (ReactSfc |+| StringLit "placeholder" |+| String)
     , id :: UndefinedOr String
     , loading :: UndefinedOr Boolean
-    , target
-      :: UndefinedOr
-         (StringLit "ADMIN_PATH" |+| StringLit "REMOTE" |+| StringLit "APP")
+    , outline :: UndefinedOr Boolean
     , url :: UndefinedOr String
     , onAction :: UndefinedOr (Effect Unit)
     , onMouseEnter :: UndefinedOr (Effect Unit)
@@ -99,6 +69,8 @@ type ComplexAction
 complexAction :: forall r. Castable r ComplexAction => r -> ComplexAction
 complexAction = cast
 
-foreign import data FunctionComponent :: Type
+foreign import data ReactSfc :: Type
+
+foreign import data RefObject :: Type
 
 foreign import data SyntheticEvent :: Type

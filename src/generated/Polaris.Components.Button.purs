@@ -6,8 +6,8 @@ module Polaris.Components.Button
   , actionListItemDescriptor
   , ConnectedDisclosure
   , connectedDisclosure
-  , FunctionComponent
   , KeyboardEvent
+  , ReactSfc
   ) where
 
 import Prelude
@@ -22,19 +22,25 @@ import Untagged.Union (UndefinedOr, type (|+|))
 type ButtonProps
   = { accessibilityLabel :: UndefinedOr String
     , ariaControls :: UndefinedOr String
+    , ariaDescribedBy :: UndefinedOr String
     , ariaExpanded :: UndefinedOr Boolean
-    , ariaPressed :: UndefinedOr Boolean
     , children :: UndefinedOr (String |+| Array String)
     , connectedDisclosure :: UndefinedOr ConnectedDisclosure
     , destructive :: UndefinedOr Boolean
     , disabled :: UndefinedOr Boolean
     , disclosure
       :: UndefinedOr
-         (StringLit "down" |+| StringLit "up" |+| Boolean)
+         ( StringLit "down"
+           |+| StringLit "up"
+           |+| StringLit "select"
+           |+| Boolean
+         )
     , download :: UndefinedOr (String |+| Boolean)
     , external :: UndefinedOr Boolean
     , fullWidth :: UndefinedOr Boolean
-    , icon :: UndefinedOr (JSX |+| String |+| FunctionComponent)
+    , icon
+      :: UndefinedOr
+         (JSX |+| ReactSfc |+| StringLit "placeholder" |+| String)
     , id :: UndefinedOr String
     , loading :: UndefinedOr Boolean
     , monochrome :: UndefinedOr Boolean
@@ -42,6 +48,8 @@ type ButtonProps
     , plain :: UndefinedOr Boolean
     , pressed :: UndefinedOr Boolean
     , primary :: UndefinedOr Boolean
+    , removeUnderline :: UndefinedOr Boolean
+    , role :: UndefinedOr String
     , size
       :: UndefinedOr
          (StringLit "slim" |+| StringLit "medium" |+| StringLit "large")
@@ -79,13 +87,12 @@ type ActionListItemDescriptor
     , ellipsis :: UndefinedOr Boolean
     , external :: UndefinedOr Boolean
     , helpText :: UndefinedOr String
-    , icon :: UndefinedOr (String |+| FunctionComponent)
+    , icon :: UndefinedOr (ReactSfc |+| StringLit "placeholder" |+| String)
     , id :: UndefinedOr String
     , image :: UndefinedOr String
+    , prefix :: UndefinedOr JSX
     , role :: UndefinedOr String
-    , target
-      :: UndefinedOr
-         (StringLit "ADMIN_PATH" |+| StringLit "REMOTE" |+| StringLit "APP")
+    , suffix :: UndefinedOr JSX
     , url :: UndefinedOr String
     , onAction :: UndefinedOr (Effect Unit)
     , onMouseEnter :: UndefinedOr (Effect Unit)
@@ -116,6 +123,6 @@ connectedDisclosure
   -> ConnectedDisclosure
 connectedDisclosure = cast
 
-foreign import data FunctionComponent :: Type
-
 foreign import data KeyboardEvent :: Type
+
+foreign import data ReactSfc :: Type

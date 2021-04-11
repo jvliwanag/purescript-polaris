@@ -19,6 +19,7 @@ module Polaris.Components.Locales
   , sv
   , th
   , tr
+  , vi
   , zh_CN
   , zh_TW
   ) where
@@ -64,6 +65,8 @@ foreign import sv :: TranslationDictionary
 foreign import th :: TranslationDictionary
 
 foreign import tr :: TranslationDictionary
+
+foreign import vi :: TranslationDictionary
 
 foreign import zh_CN :: TranslationDictionary
 

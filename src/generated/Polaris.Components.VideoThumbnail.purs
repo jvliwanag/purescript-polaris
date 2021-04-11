@@ -10,8 +10,10 @@ import Untagged.Union (UndefinedOr)
 
 type VideoThumbnailProps
   = { accessibilityLabel :: UndefinedOr String
+    , showVideoProgress :: UndefinedOr Boolean
     , thumbnailUrl :: String
     , videoLength :: UndefinedOr Number
+    , videoProgress :: UndefinedOr Number
     , onBeforeStartPlaying :: UndefinedOr (Effect Unit)
     , onClick :: Effect Unit
     }

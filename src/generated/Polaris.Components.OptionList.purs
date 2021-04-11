@@ -10,17 +10,20 @@ module Polaris.Components.OptionList
 
 import Prelude
 import Effect.Uncurried (EffectFn1)
+import Literals (StringLit)
 import Polaris.Internal (elem)
 import React.Basic.Hooks (JSX, ReactComponent)
 import Untagged.Castable (cast, class Castable)
-import Untagged.Union (UndefinedOr)
+import Untagged.Union (UndefinedOr, type (|+|))
 
 type OptionListProps
   = { allowMultiple :: UndefinedOr Boolean
     , id :: UndefinedOr String
     , optionRole :: UndefinedOr String
     , options :: UndefinedOr (Array OptionDescriptor)
-    , role :: UndefinedOr String
+    , role
+      :: UndefinedOr
+         (StringLit "listbox" |+| StringLit "combobox" |+| String)
     , sections :: UndefinedOr (Array SectionDescriptor)
     , selected :: Array String
     , title :: UndefinedOr String

@@ -2,6 +2,8 @@ module Polaris.Components.Pagination
   ( PaginationProps
   , pagination
   , paginationRC
+  , AccessibilityLabels
+  , accessibilityLabels
   , Add
   , Alt
   , BackSlash
@@ -114,13 +116,13 @@ import Untagged.Union (UndefinedOr)
 
 type PaginationProps
   = { accessibilityLabel :: UndefinedOr String
+    , accessibilityLabels :: UndefinedOr AccessibilityLabels
     , hasNext :: UndefinedOr Boolean
     , hasPrevious :: UndefinedOr Boolean
-    , label :: UndefinedOr String
+    , label :: UndefinedOr JSX
     , nextKeys :: UndefinedOr (Array Key)
     , nextTooltip :: UndefinedOr String
     , nextURL :: UndefinedOr String
-    , plain :: UndefinedOr Boolean
     , previousKeys :: UndefinedOr (Array Key)
     , previousTooltip :: UndefinedOr String
     , previousURL :: UndefinedOr String
@@ -132,6 +134,17 @@ pagination :: forall r. Castable r PaginationProps => r -> JSX
 pagination = elem paginationRC
 
 foreign import paginationRC :: ReactComponent PaginationProps
+
+type AccessibilityLabels = { next :: String, previous :: String }
+
+accessibilityLabels
+  :: forall r
+   . Castable
+  r
+  AccessibilityLabels
+  => r
+  -> AccessibilityLabels
+accessibilityLabels = cast
 
 foreign import data Add :: Type
 

@@ -6,7 +6,7 @@ module Polaris.Components.ActionList
   , actionListItemDescriptor
   , ActionListSection
   , actionListSection
-  , FunctionComponent
+  , ReactSfc
   , OnAction
   ) where
 
@@ -44,13 +44,12 @@ type ActionListItemDescriptor
     , ellipsis :: UndefinedOr Boolean
     , external :: UndefinedOr Boolean
     , helpText :: UndefinedOr String
-    , icon :: UndefinedOr (String |+| FunctionComponent)
+    , icon :: UndefinedOr (ReactSfc |+| StringLit "placeholder" |+| String)
     , id :: UndefinedOr String
     , image :: UndefinedOr String
+    , prefix :: UndefinedOr JSX
     , role :: UndefinedOr String
-    , target
-      :: UndefinedOr
-         (StringLit "ADMIN_PATH" |+| StringLit "REMOTE" |+| StringLit "APP")
+    , suffix :: UndefinedOr JSX
     , url :: UndefinedOr String
     , onAction :: UndefinedOr (Effect Unit)
     , onMouseEnter :: UndefinedOr (Effect Unit)
@@ -78,6 +77,6 @@ actionListSection
   -> ActionListSection
 actionListSection = cast
 
-foreign import data FunctionComponent :: Type
+foreign import data ReactSfc :: Type
 
 foreign import data OnAction :: Type

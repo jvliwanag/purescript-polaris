@@ -6,10 +6,8 @@ module Polaris.Components.AppProvider
   , appProviderRC
   , Config
   , FeaturesConfig
-  , PartialLegacyColors
-  , partialLegacyColors
+  , Partial
   , ReactComponentType
-  , Record
   , ThemeConfig
   , themeConfig
   , ThemeLogo
@@ -24,12 +22,9 @@ import Untagged.Castable (cast, class Castable)
 import Untagged.Union (UndefinedOr, type (|+|))
 
 type AppProviderBaseProps'
-  = ( apiKey :: UndefinedOr String
-    , features :: UndefinedOr FeaturesConfig
-    , forceRedirect :: UndefinedOr Boolean
+  = ( features :: UndefinedOr FeaturesConfig
     , i18n :: TranslationDictionary |+| Array TranslationDictionary
     , linkComponent :: UndefinedOr ReactComponentType
-    , shopOrigin :: UndefinedOr String
     , theme :: UndefinedOr ThemeConfig
     )
 
@@ -53,38 +48,17 @@ foreign import data Config :: Type
 
 foreign import data FeaturesConfig :: Type
 
-type PartialLegacyColors
-  = { critical :: UndefinedOr String
-    , decorative :: UndefinedOr String
-    , highlight :: UndefinedOr String
-    , interactive :: UndefinedOr String
-    , onSurface :: UndefinedOr String
-    , primary :: UndefinedOr String
-    , secondary :: UndefinedOr String
-    , success :: UndefinedOr String
-    , surface :: UndefinedOr String
-    , warning :: UndefinedOr String
-    , topBar :: UndefinedOr Record
-    }
-
-partialLegacyColors
-  :: forall r
-   . Castable
-  r
-  PartialLegacyColors
-  => r
-  -> PartialLegacyColors
-partialLegacyColors = cast
+foreign import data Partial :: Type
 
 foreign import data ReactComponentType :: Type
 
-foreign import data Record :: Type
-
 type ThemeConfig
-  = { colorScheme :: UndefinedOr (StringLit "light" |+| StringLit "dark")
-    , colors :: UndefinedOr PartialLegacyColors
+  = { colorScheme
+      :: UndefinedOr
+         (StringLit "light" |+| StringLit "dark" |+| StringLit "inverse")
+    , colors :: UndefinedOr Partial
     , config :: UndefinedOr Config
-    , frameOffset :: UndefinedOr Number
+    , frameOffset :: UndefinedOr String
     , logo :: UndefinedOr ThemeLogo
     }
 

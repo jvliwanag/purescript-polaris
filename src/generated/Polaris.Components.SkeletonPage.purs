@@ -17,7 +17,6 @@ type SkeletonPageBaseProps'
     , narrowWidth :: UndefinedOr Boolean
     , primaryAction :: UndefinedOr Boolean
     , secondaryActions :: UndefinedOr Number
-    , singleColumn :: UndefinedOr Boolean
     , title :: UndefinedOr String
     )
 

@@ -18,6 +18,7 @@ type TextFieldProps
     , ariaActiveDescendant :: UndefinedOr String
     , ariaAutocomplete :: UndefinedOr String
     , ariaControls :: UndefinedOr String
+    , ariaExpanded :: UndefinedOr Boolean
     , ariaOwns :: UndefinedOr String
     , autoComplete :: UndefinedOr (Boolean |+| String)
     , autoFocus :: UndefinedOr Boolean
@@ -31,7 +32,18 @@ type TextFieldProps
     , focused :: UndefinedOr Boolean
     , helpText :: UndefinedOr JSX
     , id :: UndefinedOr String
-    , label :: String
+    , inputMode
+      :: UndefinedOr
+         ( StringLit "none"
+           |+| StringLit "text"
+           |+| StringLit "decimal"
+           |+| StringLit "numeric"
+           |+| StringLit "tel"
+           |+| StringLit "search"
+           |+| StringLit "email"
+           |+| StringLit "url"
+         )
+    , label :: JSX
     , labelAction :: UndefinedOr Action
     , labelHidden :: UndefinedOr Boolean
     , max :: UndefinedOr (Number |+| String)

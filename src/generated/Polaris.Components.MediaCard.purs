@@ -6,7 +6,7 @@ module Polaris.Components.MediaCard
   , mediaCardRC
   , ActionListItemDescriptor
   , actionListItemDescriptor
-  , FunctionComponent
+  , ReactSfc
   ) where
 
 import Prelude
@@ -22,9 +22,10 @@ type MediaCardBaseProps'
   = ( description :: String
     , popoverActions :: UndefinedOr (Array ActionListItemDescriptor)
     , portrait :: UndefinedOr Boolean
-    , primaryAction :: Action
+    , primaryAction :: UndefinedOr Action
     , secondaryAction :: UndefinedOr Action
-    , title :: String
+    , size :: UndefinedOr (StringLit "small" |+| StringLit "medium")
+    , title :: JSX
     )
 
 type MediaCardBaseProps = { | MediaCardBaseProps' }
@@ -50,13 +51,12 @@ type ActionListItemDescriptor
     , ellipsis :: UndefinedOr Boolean
     , external :: UndefinedOr Boolean
     , helpText :: UndefinedOr String
-    , icon :: UndefinedOr (String |+| FunctionComponent)
+    , icon :: UndefinedOr (ReactSfc |+| StringLit "placeholder" |+| String)
     , id :: UndefinedOr String
     , image :: UndefinedOr String
+    , prefix :: UndefinedOr JSX
     , role :: UndefinedOr String
-    , target
-      :: UndefinedOr
-         (StringLit "ADMIN_PATH" |+| StringLit "REMOTE" |+| StringLit "APP")
+    , suffix :: UndefinedOr JSX
     , url :: UndefinedOr String
     , onAction :: UndefinedOr (Effect Unit)
     , onMouseEnter :: UndefinedOr (Effect Unit)
@@ -72,4 +72,4 @@ actionListItemDescriptor
   -> ActionListItemDescriptor
 actionListItemDescriptor = cast
 
-foreign import data FunctionComponent :: Type
+foreign import data ReactSfc :: Type

@@ -14,7 +14,11 @@ import Untagged.Castable (cast, class Castable)
 import Untagged.Union (UndefinedOr)
 
 type CollapsibleBaseProps'
-  = ( id :: String, open :: Boolean, transition :: UndefinedOr Transition )
+  = ( expandOnPrint :: UndefinedOr Boolean
+    , id :: String
+    , open :: Boolean
+    , transition :: UndefinedOr Transition
+    )
 
 type CollapsibleBaseProps = { | CollapsibleBaseProps' }
 

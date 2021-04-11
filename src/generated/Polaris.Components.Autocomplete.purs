@@ -5,7 +5,7 @@ module Polaris.Components.Autocomplete
   , ActionListItemDescriptor
   , actionListItemDescriptor
   , PArray
-  , FunctionComponent
+  , ReactSfc
   ) where
 
 import Prelude
@@ -54,13 +54,12 @@ type ActionListItemDescriptor
     , ellipsis :: UndefinedOr Boolean
     , external :: UndefinedOr Boolean
     , helpText :: UndefinedOr String
-    , icon :: UndefinedOr (String |+| FunctionComponent)
+    , icon :: UndefinedOr (ReactSfc |+| StringLit "placeholder" |+| String)
     , id :: UndefinedOr String
     , image :: UndefinedOr String
+    , prefix :: UndefinedOr JSX
     , role :: UndefinedOr String
-    , target
-      :: UndefinedOr
-         (StringLit "ADMIN_PATH" |+| StringLit "REMOTE" |+| StringLit "APP")
+    , suffix :: UndefinedOr JSX
     , url :: UndefinedOr String
     , onAction :: UndefinedOr (Effect Unit)
     , onMouseEnter :: UndefinedOr (Effect Unit)
@@ -78,4 +77,4 @@ actionListItemDescriptor = cast
 
 foreign import data PArray :: Type
 
-foreign import data FunctionComponent :: Type
+foreign import data ReactSfc :: Type

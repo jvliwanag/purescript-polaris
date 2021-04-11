@@ -1,5 +1,5 @@
 module Polaris.Components.Thumbnail
-  (ThumbnailProps, thumbnail, thumbnailRC) where
+  (ThumbnailProps, thumbnail, thumbnailRC, ReactSfc) where
 
 import Literals (StringLit)
 import Polaris.Internal (elem)
@@ -12,10 +12,12 @@ type ThumbnailProps
     , size
       :: UndefinedOr
          (StringLit "small" |+| StringLit "medium" |+| StringLit "large")
-    , source :: String
+    , source :: String |+| ReactSfc
     }
 
 thumbnail :: forall r. Castable r ThumbnailProps => r -> JSX
 thumbnail = elem thumbnailRC
 
 foreign import thumbnailRC :: ReactComponent ThumbnailProps
+
+foreign import data ReactSfc :: Type

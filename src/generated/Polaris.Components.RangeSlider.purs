@@ -15,7 +15,7 @@ type RangeSliderProps
     , error :: UndefinedOr (String |+| JSX |+| Array (String |+| JSX))
     , helpText :: UndefinedOr JSX
     , id :: UndefinedOr String
-    , label :: String
+    , label :: JSX
     , labelAction :: UndefinedOr Action
     , labelHidden :: UndefinedOr Boolean
     , max :: UndefinedOr Number

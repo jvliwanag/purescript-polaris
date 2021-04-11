@@ -9,7 +9,8 @@ import Untagged.Castable (class Castable)
 import Untagged.Union (UndefinedOr)
 
 type SheetBaseProps'
-  = ( open :: Boolean
+  = ( accessibilityLabel :: String
+    , open :: Boolean
     , onClose :: Effect Unit
     , onEntered :: UndefinedOr (Effect Unit)
     , onExit :: UndefinedOr (Effect Unit)

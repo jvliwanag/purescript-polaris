@@ -31,18 +31,25 @@ type PopoverBaseProps'
            |+| StringLit "grid"
            |+| StringLit "dialog"
          )
+    , autofocusTarget
+      :: UndefinedOr
+         (StringLit "none" |+| StringLit "first-node" |+| StringLit "container")
+    , colorScheme
+      :: UndefinedOr
+         (StringLit "light" |+| StringLit "dark" |+| StringLit "inverse")
     , fixed :: UndefinedOr Boolean
     , fluidContent :: UndefinedOr Boolean
     , fullHeight :: UndefinedOr Boolean
     , fullWidth :: UndefinedOr Boolean
+    , hideOnPrint :: UndefinedOr Boolean
     , preferInputActivator :: UndefinedOr Boolean
     , preferredAlignment
       :: UndefinedOr
-         (StringLit "left" |+| StringLit "center" |+| StringLit "right")
+         (StringLit "left" |+| StringLit "right" |+| StringLit "center")
     , preferredPosition
       :: UndefinedOr
          (StringLit "above" |+| StringLit "below" |+| StringLit "mostSpace")
-    , preventAutofocus :: UndefinedOr Boolean
+    , preventFocusOnClose :: UndefinedOr Boolean
     , sectioned :: UndefinedOr Boolean
     , onClose :: EffectFn1 PopoverCloseSource Unit
     )
