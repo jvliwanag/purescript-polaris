@@ -4,6 +4,16 @@ module Polaris.Components.IndexTable
   , IndexTableProps
   , indexTable
   , indexTableRC
+  , IndexTableRowBaseProps'
+  , IndexTableRowBaseProps
+  , IndexTableRowProps
+  , indexTableRow
+  , indexTableRowRC
+  , IndexTableCellBaseProps'
+  , IndexTableCellBaseProps
+  , IndexTableCellProps
+  , indexTableCell
+  , indexTableCellRC
   , ActionListItemDescriptor
   , ActionListSection
   , actionListSection
@@ -54,6 +64,47 @@ indexTable :: forall r. Castable r IndexTableBaseProps => r -> Array JSX -> JSX
 indexTable = elemWithChildren indexTableRC
 
 foreign import indexTableRC :: ReactComponent IndexTableProps
+
+type IndexTableRowBaseProps'
+  = ( id :: UndefinedOr String
+    , selected :: UndefinedOr Boolean
+    , position :: UndefinedOr Number
+    , subdued :: UndefinedOr Boolean
+    )
+
+type IndexTableRowBaseProps = { | IndexTableRowBaseProps' }
+
+type IndexTableRowProps = PropsWithChildren IndexTableRowBaseProps'
+
+indexTableRow
+  :: forall r
+   . Castable
+  r
+  IndexTableRowBaseProps
+  => r
+  -> Array JSX
+  -> JSX
+indexTableRow = elemWithChildren indexTableRowRC
+
+foreign import indexTableRowRC :: ReactComponent IndexTableRowProps
+
+type IndexTableCellBaseProps' = ( flush :: UndefinedOr Boolean )
+
+type IndexTableCellBaseProps = { | IndexTableCellBaseProps' }
+
+type IndexTableCellProps = PropsWithChildren IndexTableCellBaseProps'
+
+indexTableCell
+  :: forall r
+   . Castable
+  r
+  IndexTableCellBaseProps
+  => r
+  -> Array JSX
+  -> JSX
+indexTableCell = elemWithChildren indexTableCellRC
+
+foreign import indexTableCellRC :: ReactComponent IndexTableCellProps
 
 foreign import data ActionListItemDescriptor :: Type
 
