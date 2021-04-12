@@ -7,12 +7,14 @@ module Polaris.Components.Navigation
   , NavigationSectionProps
   , navigationSection
   , navigationSectionRC
-  , IconProps
   , Item
   , item
   , Rollup
   , rollup
   , SecondaryAction
+  , secondaryAction
+  , SubNavigationItem
+  , subNavigationItem
   ) where
 
 import Prelude
@@ -40,7 +42,7 @@ foreign import navigationRC :: ReactComponent NavigationProps
 
 type NavigationSectionProps
   = { items :: UndefinedOr (Array Item)
-    , icon :: UndefinedOr IconProps
+    , icon :: UndefinedOr String
     , title :: UndefinedOr String
     , fill :: UndefinedOr Boolean
     , rollup :: UndefinedOr (Array Rollup)
@@ -53,22 +55,20 @@ navigationSection = elem navigationSectionRC
 
 foreign import navigationSectionRC :: ReactComponent NavigationSectionProps
 
-foreign import data IconProps :: Type
-
 type Item
   = { url :: UndefinedOr String
     , matches :: UndefinedOr Boolean
     , exactMatch :: UndefinedOr Boolean
     , matchPaths :: UndefinedOr (Array String)
     , excludePaths :: UndefinedOr (Array String)
-    , icon :: UndefinedOr IconProps
+    , icon :: UndefinedOr String
     , badge :: UndefinedOr String
     , label :: UndefinedOr String
     , disabled :: UndefinedOr Boolean
     , new :: UndefinedOr Boolean
     , accessibilityLabel :: UndefinedOr String
     , selected :: UndefinedOr Boolean
-    , subNavigationItems :: UndefinedOr (Array Item)
+    , subNavigationItems :: UndefinedOr (Array SubNavigationItem)
     , secondaryAction :: UndefinedOr SecondaryAction
     , onClick :: UndefinedOr (Effect Unit)
     }
@@ -86,4 +86,32 @@ type Rollup
 rollup :: forall r. Castable r Rollup => r -> Rollup
 rollup = cast
 
-foreign import data SecondaryAction :: Type
+type SecondaryAction
+  = { url :: UndefinedOr String
+    , accessibilityLabel :: UndefinedOr String
+    , icon :: UndefinedOr String
+    }
+
+secondaryAction :: forall r. Castable r SecondaryAction => r -> SecondaryAction
+secondaryAction = cast
+
+type SubNavigationItem
+  = { url :: String
+    , matches :: UndefinedOr Boolean
+    , exactMatch :: UndefinedOr Boolean
+    , matchPaths :: UndefinedOr (Array String)
+    , "excludePaths?" :: UndefinedOr (Array String)
+    , label :: UndefinedOr String
+    , "disabled?" :: UndefinedOr Boolean
+    , "new?" :: UndefinedOr Boolean
+    , "onClick?(event" :: UndefinedOr (Effect Unit)
+    }
+
+subNavigationItem
+  :: forall r
+   . Castable
+  r
+  SubNavigationItem
+  => r
+  -> SubNavigationItem
+subNavigationItem = cast
